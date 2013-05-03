@@ -69,12 +69,15 @@ sub locate_file {
 sub _find_file {
    my ($self, $docroot, @path) = @_;
 
-   my $re = join '/', $docroot, @path;
-   $re = qr/\Q$re\E/i;
-   study $re;
+   my $full_path = join '/', $docroot, @path;
+   my $re = qr/\Q$full_path\E/i;
 
    my @files;
    find(sub {
+      if(-d $File::Find::name && $full_path !~ /^\Q$File::Find::name/i) {
+         $File::Find::prune = 1;
+         return;
+      }
       push @files, $File::Find::name
          if $File::Find::name =~ $re
    }, $docroot);
