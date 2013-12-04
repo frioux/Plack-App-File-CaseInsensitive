@@ -110,3 +110,5 @@ insensitive name (ie C<foo> and C<FOO>.)
 =head1 CONFIGURATION
 
 See L<Plack::App::File/CONFIGURATION>
+
+=cut

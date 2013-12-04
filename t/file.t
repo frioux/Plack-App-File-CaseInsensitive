@@ -4,7 +4,7 @@ use Test::More;
 use HTTP::Request::Common;
 use Plack::App::File::CaseInsensitive;
 
-my $app = Plack::App::File::CaseInsensitive->new(file => 'Changes');
+my $app = Plack::App::File::CaseInsensitive->new(file => 't/Foo');
 
 test_psgi $app, sub {
     my $cb = shift;
@@ -19,7 +19,7 @@ test_psgi $app, sub {
 };
 
 my $app_content_type = Plack::App::File::CaseInsensitive->new(
-    file => 'Changes',
+    file => 't/Foo',
     content_type => 'text/x-changes'
 );
 
